@@ -8,7 +8,7 @@
           <el-image :src="resume.basic.imageSrc" fit="fill" style="width: 200px; height: 200px"></el-image>
         </div>
 
-        <!-- A.基本信息 -->
+        <!-- 基本信息 -->
         <div class="name">
           <el-row style="height:50px;">
             <font class="title">{{resume.basic.name}}</font>
@@ -50,8 +50,7 @@
                 <i class="el-icon-user"></i>
               </td>
               <td>
-                民
-                <span style="margin: 18px" />族:
+                民<span style="margin: 18px" />族:
               </td>
               <td>{{ resume.basic.nation }}</td>
             </tr>
@@ -71,8 +70,25 @@
         </div>
       </el-aside>
 
-      <!-- B.主要内容 -->
+      <!-- 主要内容 -->
       <el-main>
+        <!-- 教育背景 -->
+        <div>
+          <el-divider content-position="left">教育背景</el-divider>
+          <table
+            class="table-content"
+            style="border: 1px;text-align: left"
+            width="570px"
+            v-for="(item, index) in resume.education"
+            :key="index"
+          >
+            <tr>
+              <td width="200px">{{ item.studyDate }}</td>
+              <td width="150px">{{ item.school }}</td>
+              <td style="text-align: right">{{ item.major }}</td>
+            </tr>
+          </table>
+        </div>
         <!-- 工作经历 -->
         <div>
           <el-divider content-position="left">工作经验</el-divider>
@@ -89,10 +105,10 @@
               <td style="text-align: right" width="200px">{{ item.post }}</td>
             </tr>
             <tr>
-              <td colspan="3" style="padding-top:30px;"><strong>工作描述：</strong></td>
+              <td style="padding-top:30px;"><strong>工作描述：</strong></td>
             </tr>
             <tr>
-              <td colspan="3">{{ item.desc }}</td>
+              <td>{{ item.desc }}</td>
             </tr>
             <tr height="80px"></tr>
           </table>
@@ -145,11 +161,8 @@ table {
   border-bottom: 1000px;
   table-layout: fixed;
 }
-.table-content>td {
-  word-wrap:break-word;
-}
-td {
-  word-wrap:break-word;
+.basic td {
+  white-space: nowrap;
 }
 .content {
   line-height: 30px;

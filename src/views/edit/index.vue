@@ -7,17 +7,18 @@
         <editContent :tab-page="1"/>
       </el-tab-pane>
 
-      <!--基本信息-->
-      <el-tab-pane>
-        <span slot="label"><i class="el-icon-date"></i> 工作信息</span>
-        <editContent :tab-page="2"/>
-      </el-tab-pane>
-
       <!--工作经历-->
       <el-tab-pane>
         <span slot="label"><i class="el-icon-date"></i> 工作经历</span>
+        <editContent :tab-page="2"/>
+      </el-tab-pane>
+
+      <!--教育背景-->
+      <el-tab-pane>
+        <span slot="label"><i class="el-icon-date"></i> 教育背景</span>
         <editContent :tab-page="3"/>
       </el-tab-pane>
+
     </el-tabs>
     </el-card>
 </template>

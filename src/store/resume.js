@@ -1,4 +1,5 @@
 let resume = {
+  // 基础信息
   basic: {
     name: '',
     imageSrc: 'https://raw.githubusercontent.com/soker3/image/master/pic/user.png',
@@ -9,15 +10,21 @@ let resume = {
     nation: '',
     phone: '',
     eMail: ''
-
-
   },
+  // 工作经历
   experience: [{
     workDate: '',
     company: '',
     post: '',
     desc: ''
+  }],
+  // 教育经历
+  education: [{
+    studyDate: '',
+    school: '',
+    major: ''
   }]
+
 }
 
 export default resume
