@@ -32,10 +32,7 @@
               <td style="font-size:23px">
                 <i class="el-icon-location-outline"></i>
               </td>
-              <td>
-                籍
-                <span style="margin: 18px" />贯:
-              </td>
+              <td>籍<span style="margin: 18px" />贯:</td>
               <td>{{ resume.basic.nativePlace }}</td>
             </tr>
             <tr>
@@ -78,12 +75,12 @@
           <table
             class="table-content"
             style="border: 1px;text-align: left"
-            width="570px"
+            width="560px"
             v-for="(item, index) in resume.education"
             :key="index"
           >
             <tr>
-              <td width="200px">{{ item.studyDate }}</td>
+              <td width="200px">{{ item.studyDateView }}</td>
               <td width="150px">{{ item.school }}</td>
               <td style="text-align: right">{{ item.major }}</td>
             </tr>
@@ -95,14 +92,15 @@
           <table
             class="table-content"
             style="border: 1px;text-align: left"
-            width="570px"
+            width="560px"
             v-for="(item, index) in resume.experience"
             :key="index"
           >
             <tr>
-              <td width="200px">{{ item.company }}</td>
-              <td width="200px">{{ item.workDate }}</td>
-              <td style="text-align: right" width="200px">{{ item.post }}</td>
+              <td>{{ item.workDateView }}</td>
+            </tr>
+            <tr>
+              <td>{{ `工作单位:\u3000 ${item.company} | 职位:\u3000 ${item.post}` }}</td>
             </tr>
             <tr>
               <td style="padding-top:30px;"><strong>工作描述：</strong></td>
@@ -125,7 +123,27 @@ export default {
   name: 'preview',
   data() {
     return {
-      resume,
+      resume
+    }
+  },
+  watch: {
+    'resume.education': {
+      handler: function(newVal) {
+        newVal.forEach((item, index) => {
+          // 格式化日期
+          this.resume.education[index].studyDateView = item.studyDate.join(' - ') 
+        })
+      },
+      deep: true
+    },
+    'resume.experience': {
+      handler: function(newVal) {
+        newVal.forEach((item, index) => {
+          // 格式化日期
+          this.resume.experience[index].workDateView = item.workDate.join(' - ') 
+        })
+      },
+      deep: true
     }
   }
 }

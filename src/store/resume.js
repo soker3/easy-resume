@@ -21,6 +21,7 @@ let resume = {
   // 教育经历
   education: [{
     studyDate: '',
+    studyDateView: '',
     school: '',
     major: ''
   }]

@@ -62,7 +62,7 @@
               start-placeholder="开始日期"
               end-placeholder="结束日期"
               style="width:255px"
-              value-format="yyyy-MM"
+              value-format="yyyy.MM"
             ></el-date-picker>
           </el-form-item>
 
@@ -100,7 +100,7 @@
               start-placeholder="开始日期"
               end-placeholder="结束日期"
               style="width:255px"
-              value-format="yyyy-MM"
+              value-format="yyyy.MM"
             ></el-date-picker>
           </el-form-item>
 
