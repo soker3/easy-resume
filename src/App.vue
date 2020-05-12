@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <test/>
+    <home/>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ import home from './views/home/index'
 export default {
   name: 'App',
   components: {
-    test: home
+    home
   }
 }
 </script>

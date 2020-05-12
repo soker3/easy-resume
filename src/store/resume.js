@@ -24,6 +24,15 @@ let resume = {
     studyDateView: '',
     school: '',
     major: ''
+  }],
+  // 项目经验
+  project: [{
+    projectDate: '',
+    projectName: '',
+    tecStack: '',
+    projectRole: '',
+    projectDute: '',
+    projectDesc: ''
   }]
 
 }
