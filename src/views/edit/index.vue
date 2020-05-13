@@ -1,22 +1,28 @@
 <template>
     <el-card :body-style="{ padding: '0px 0px 10px 0px' }" class="box-card" style="width:500px;">
     <el-tabs :tab-position="tabPosition">
-      <!--基本信息-->
+      <!-- 基本信息 -->
       <el-tab-pane>
         <span slot="label"><i class="el-icon-date"></i> 基本信息</span>
         <editContent :tab-page="1"/>
       </el-tab-pane>
 
-      <!--工作经历-->
+      <!-- 工作经历 -->
       <el-tab-pane>
         <span slot="label"><i class="el-icon-date"></i> 工作经历</span>
         <editContent :tab-page="2"/>
       </el-tab-pane>
 
-      <!--教育背景-->
+      <!-- 教育背景 -->
       <el-tab-pane>
         <span slot="label"><i class="el-icon-date"></i> 教育背景</span>
         <editContent :tab-page="3"/>
+      </el-tab-pane>
+
+      <!-- 项目经历 -->
+      <el-tab-pane>
+        <span slot="label"><i class="el-icon-date"></i> 项目经历</span>
+        <editContent :tab-page="4"/>
       </el-tab-pane>
 
     </el-tabs>

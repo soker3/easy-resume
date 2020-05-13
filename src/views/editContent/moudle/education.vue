@@ -47,17 +47,17 @@ export default {
   methods: {
     addList() {
       this.resume.education.push({
-        studyDate: "",
+        studyDate: "", 
         studyDateView: "",
         school: "",
         major: ""
       });
     },
     deleteList(index) {
-      this.resume.education.splice(index, 1);
+      this.resume.education.splice(index, 1)
     }
   }
-};
+}
 </script>
 
 <style>
