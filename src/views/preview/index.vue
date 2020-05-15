@@ -100,13 +100,47 @@
               <td>{{ item.workDateView }}</td>
             </tr>
             <tr>
-              <td>{{ `工作单位:\u3000 ${item.company} | 职位:\u3000 ${item.post}` }}</td>
+              <td><strong>工作单位:</strong>{{ item.company }} | <strong>职位:</strong>{{item.post}}</td>
             </tr>
             <tr>
               <td style="padding-top:30px;"><strong>工作描述：</strong></td>
             </tr>
             <tr>
               <td>{{ item.desc }}</td>
+            </tr>
+            <tr height="80px"></tr>
+          </table>
+        </div>
+        <!-- 项目经历 -->
+        <div>
+          <el-divider content-position="left">项目经历</el-divider>
+          <table
+            class="table-content"
+            style="border: 1px;text-align: left"
+            width="560px"
+            v-for="(item, index) in resume.project"
+            :key="index"
+          >
+            <tr>
+              <td>{{ item.projectDateView }}</td>
+            </tr>
+            <tr>
+              <td>{{ item.projectName }}</td>
+            </tr>
+            <tr>
+              <td><strong> 相关技术栈： </strong> {{ item.tecStack }}</td>
+            </tr>
+            <tr>
+              <td><strong> 项目角色： </strong> {{ item.projectRole }}</td>
+            </tr>
+            <tr>
+              <td><strong> 项目职责： </strong> {{ item.projectDute }}</td>
+            </tr>
+            <tr>
+              <td style="padding-top:30px;"><strong>项目描述</strong></td>
+            </tr>
+            <tr>
+              <td>{{ item.projectDesc }}</td>
             </tr>
             <tr height="80px"></tr>
           </table>
@@ -131,7 +165,10 @@ export default {
       handler: function(newVal) {
         newVal.forEach((item, index) => {
           // 格式化日期
-          this.resume.education[index].studyDateView = item.studyDate.join(' - ') 
+          if (item.studyDate instanceof Array) {
+            this.resume.education[index].studyDateView = item.studyDate.join(' - ') 
+          }
+          
         })
       },
       deep: true
@@ -140,7 +177,22 @@ export default {
       handler: function(newVal) {
         newVal.forEach((item, index) => {
           // 格式化日期
-          this.resume.experience[index].workDateView = item.workDate.join(' - ') 
+          console.log(item)
+          if (item.workDate instanceof Array) {
+            this.resume.experience[index].workDateView = item.workDate.join(' - ') 
+          }
+          
+        })
+      },
+      deep: true
+    },
+    'resume.project': {
+      handler: function(newVal) {
+        newVal.forEach((item, index) => {
+          // 格式化日期
+          if (item.projectDate instanceof Array) {
+            this.resume.project[index].projectDateView = item.projectDate.join(' - ') 
+          }
         })
       },
       deep: true

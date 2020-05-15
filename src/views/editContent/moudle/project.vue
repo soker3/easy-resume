@@ -4,12 +4,12 @@
       :label-position="'left'"
       size="medium"
       ref="form"
-      label-width="80px"
+      label-width="85px"
       style="width:335px"
       v-for="(item, index) in resume.project"
       :key="index"
     >
-      <el-divider style="height: 20px" content-position="left">工作经验{{index + 1}}</el-divider>
+      <el-divider style="height: 20px" content-position="left">项目经验{{index + 1}}</el-divider>
       <el-form-item label="项目时间">
         <el-date-picker
           v-model="item.projectDate"
@@ -37,8 +37,12 @@
       <el-form-item label="项目描述">
         <el-input type="textarea" autosize v-model="item.projectDesc"></el-input>
       </el-form-item>
-      <el-button type="primary" icon="el-icon-edit" @click="addList()">添加</el-button>
-      <el-button type="danger" icon="el-icon-delete" @click="deleteList(index)"></el-button>
+     <el-form-item>
+        <div style="float: right">
+          <el-button type="primary" icon="el-icon-edit" @click="addList()" circle></el-button>
+          <el-button type="danger" icon="el-icon-delete" @click="deleteList(index)" circle></el-button>
+        </div>
+      </el-form-item>
     </el-form>
   </div>
 </template>

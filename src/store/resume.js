@@ -2,7 +2,7 @@ let resume = {
   // 基础信息
   basic: {
     name: '',
-    imageSrc: 'https://raw.githubusercontent.com/soker3/image/master/pic/user.png',
+    imageSrc: 'https://raw.githubusercontent.com/soker3/image/master/pic/user.png2',
     purpose: '',
     brithday: '',
     nativePlace: '',
@@ -14,6 +14,7 @@ let resume = {
   // 工作经历
   experience: [{
     workDate: '',
+    studyDateView: '',
     company: '',
     post: '',
     desc: ''
@@ -28,6 +29,7 @@ let resume = {
   // 项目经验
   project: [{
     projectDate: '',
+    projectDateView: '',
     projectName: '',
     tecStack: '',
     projectRole: '',

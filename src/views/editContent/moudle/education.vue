@@ -28,8 +28,12 @@
       <el-form-item label="专业">
         <el-input v-model="item.major"></el-input>
       </el-form-item>
-      <el-button type="primary" icon="el-icon-edit" @click="addList()">添加</el-button>
-      <el-button type="danger" icon="el-icon-delete" @click="deleteList(index)"></el-button>
+      <el-form-item>
+        <div style="float: right">
+          <el-button type="primary" icon="el-icon-edit" @click="addList()" circle></el-button>
+          <el-button type="danger" icon="el-icon-delete" @click="deleteList(index)" circle></el-button>
+        </div>
+      </el-form-item>
     </el-form>
   </div>
 </template>

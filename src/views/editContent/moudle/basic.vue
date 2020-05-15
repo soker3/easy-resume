@@ -10,7 +10,9 @@
       <el-form-item label="姓名">
         <el-input v-model="resume.basic.name" clearable></el-input>
       </el-form-item>
-
+      <el-form-item label="头像">
+        <el-input v-model="resume.basic.imageSrc" placeholder="http://" clearable></el-input>
+      </el-form-item>
       <el-form-item label="求职意向">
         <el-input v-model="resume.basic.purpose" clearable></el-input>
       </el-form-item>
