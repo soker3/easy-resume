@@ -137,12 +137,12 @@
               <td><strong> 项目职责： </strong> {{ item.projectDute }}</td>
             </tr>
             <tr>
-              <td style="padding-top:30px;"><strong>项目描述</strong></td>
+              <td style="padding-top:15px;"><strong>项目描述</strong></td>
             </tr>
             <tr>
               <td>{{ item.projectDesc }}</td>
             </tr>
-            <tr height="80px"></tr>
+            <tr height="20px"></tr>
           </table>
         </div>
       </el-main>

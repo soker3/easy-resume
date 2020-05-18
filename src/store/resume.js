@@ -35,7 +35,13 @@ let resume = {
     projectRole: '',
     projectDute: '',
     projectDesc: ''
-  }]
+  }],
+  // 职业技能
+  skill: {
+    language: '',
+    office: '',
+    major: '',
+  }
 
 }
 

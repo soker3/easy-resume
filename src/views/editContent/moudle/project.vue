@@ -39,8 +39,8 @@
       </el-form-item>
      <el-form-item>
         <div style="float: right">
-          <el-button type="primary" icon="el-icon-edit" @click="addList()" circle></el-button>
-          <el-button type="danger" icon="el-icon-delete" @click="deleteList(index)" circle></el-button>
+          <el-button type="primary" icon="el-icon-edit" @click="addList()" circle />
+          <el-button type="danger" icon="el-icon-delete" @click="deleteList(index)" circle />
         </div>
       </el-form-item>
     </el-form>
