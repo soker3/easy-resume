@@ -71,7 +71,7 @@
       <el-main>
         <!-- 教育背景 -->
         <div>
-          <el-divider content-position="left">教育背景</el-divider>
+          <el-divider content-position="left" v-if="resume.education">教育背景</el-divider>
           <table
             class="table-content"
             style="border: 1px;text-align: left"
@@ -97,15 +97,13 @@
             :key="index"
           >
             <tr>
-              <td>{{ item.workDateView }}</td>
+              <td colspan="2">{{ item.workDateView }}</td>
             </tr>
             <tr>
-              <td><strong>工作单位:</strong>{{ item.company }} | <strong>职位:</strong>{{item.post}}</td>
+              <td colspan="2"><strong>工作单位:</strong>{{ item.company }} | <strong>职位:</strong>{{item.post}}</td>
             </tr>
             <tr>
-              <td style="padding-top:30px;"><strong>工作描述：</strong></td>
-            </tr>
-            <tr>
+              <td class="td-label"><strong>工作描述：</strong></td>
               <td>{{ item.desc }}</td>
             </tr>
             <tr height="80px"></tr>
@@ -113,7 +111,7 @@
         </div>
         <!-- 项目经历 -->
         <div>
-          <el-divider content-position="left">项目经历</el-divider>
+          <el-divider content-position="left" v-if="resume.project.length > 0">项目经历 </el-divider>
           <table
             class="table-content"
             style="border: 1px;text-align: left"
@@ -122,25 +120,49 @@
             :key="index"
           >
             <tr>
-              <td>{{ item.projectDateView }}</td>
+              <td class="td-contenet" colspan="2">{{ item.projectDateView }}</td>
             </tr>
             <tr>
-              <td>{{ item.projectName }}</td>
+              <td class="td-contenet" colspan="2">{{ item.projectName }}</td>
             </tr>
             <tr>
-              <td><strong> 相关技术栈： </strong> {{ item.tecStack }}</td>
+              <td class="td-label"><strong> 相关技术栈： </strong> </td>
+              <td>{{ item.tecStack }}</td>
             </tr>
             <tr>
-              <td><strong> 项目角色： </strong> {{ item.projectRole }}</td>
+              <td class="td-label"><strong> 项目角色： </strong> </td>
+              <td>{{ item.projectRole }}</td>
             </tr>
             <tr>
-              <td><strong> 项目职责： </strong> {{ item.projectDute }}</td>
+              <td class="td-label"><strong> 项目职责： </strong> </td>
+              <td>{{ item.projectDute }}</td>
             </tr>
             <tr>
-              <td style="padding-top:15px;"><strong>项目描述</strong></td>
-            </tr>
-            <tr>
+              <td class="td-label"><strong>项目描述：</strong></td>
               <td>{{ item.projectDesc }}</td>
+            </tr>
+            <tr height="20px"></tr>
+          </table>
+        </div>
+        <!-- 项目经历 -->
+        <div>
+          <el-divider content-position="left" v-if="Object.keys(resume.skill).length > 0">职业技能</el-divider>
+          <table
+            class="table-content"
+            style="border: 1px;text-align: left"
+            width="560px"
+          >
+            <tr>
+              <td class="td-label"><strong> 语言技能：</strong></td>
+              <td class="td-contenet">{{ resume.skill.language }}</td>
+            </tr>
+            <tr>
+              <td class="td-label"><strong> 办公技能：</strong></td>
+              <td class="td-contenet">{{ resume.skill.office }}</td>
+            </tr>
+            <tr>
+              <td class="td-label"><strong> 专业技能：</strong></td>
+              <td class="td-contenet">{{ resume.skill.major }}</td>
             </tr>
             <tr height="20px"></tr>
           </table>
@@ -245,8 +267,14 @@ table {
   background-color: #ffffff;
   color: #333;
 }
-
 .el-image {
   border-radius: 100px;
+}
+.td-label {
+  padding-top:10px;
+  width: 100px;
+}
+.td-contenet {
+  padding-top:10px;
 }
 </style>

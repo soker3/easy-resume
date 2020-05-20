@@ -1,6 +1,9 @@
 <template>
   <div>
     <el-container class="container">
+      <!-- -->
+      <config v-if="tabPage === 0"/>
+      <!-- 基础信息-->
       <basic  v-if="tabPage === 1" />
       <!-- 工作经验 -->
       <experience v-if="tabPage === 2"/>
@@ -15,12 +18,14 @@
 </template>
 
 <script>
+import config from './moudle/config'
 import resume from '../../store/resume'
 import basic from './moudle/basic'
 import experience from './moudle/experience' 
 import education from './moudle/education'
 import project from './moudle/project'
 import skill from './moudle/skill'
+
 
 export default {
   name: 'editContent',
@@ -30,7 +35,8 @@ export default {
     experience,
     education,
     project,
-    skill
+    skill,
+    config
   },
   data() {
     return {

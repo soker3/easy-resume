@@ -2,13 +2,14 @@
   <div class="content" >
     <el-container>
       <el-header>
-        header
+        <el-card class="box-card"> easy-resume</el-card>
       </el-header>
       <el-container>
         <el-aside width="550px"><edit/></el-aside>
         <el-main><preview/></el-main>
       </el-container>
     </el-container>
+    <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
   </div>
 </template>
 
@@ -32,9 +33,11 @@ export default {
 
 <style scoped>
 .el-header {
-    background-color: #B3C0D1;
+    /*background-color: #B3C0D1;*/
     color: #333;
-    text-align: center;
+    text-align: left;
+    padding: 0 20px 10px 10px;
+
   }
   
   .el-aside {
