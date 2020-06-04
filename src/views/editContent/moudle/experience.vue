@@ -61,7 +61,9 @@ export default {
       })
     },
     deleteList(index) {
-      this.resume.experience.splice(index, 1)
+      if (this.resume.experience.length > 1)  {
+        this.resume.experience.splice(index, 1)
+      }
     }
   }
 }

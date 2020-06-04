@@ -28,10 +28,14 @@
       <el-form-item label="专业">
         <el-input v-model="item.major"></el-input>
       </el-form-item>
+      <el-form-item label="学历/学位">
+        <el-input v-model="item.degree"></el-input>
+      </el-form-item>
       <el-form-item>
         <div style="float: right">
-          <el-button type="primary" icon="el-icon-edit" @click="addList()" circle></el-button>
-          <el-button type="danger" icon="el-icon-delete" @click="deleteList(index)" circle></el-button>
+          <el-button type="primary" icon="el-icon-edit" @click="addList()" circle />
+          <el-button type="danger" icon="el-icon-delete" @click="deleteList(index)" circle  />
+          <el-button type="info" icon="el-icon-refresh-left" circle />
         </div>
       </el-form-item>
     </el-form>
@@ -39,29 +43,32 @@
 </template>
 
 <script>
-import resume from "../../../store/resume";
+import resume from "../../../store/resume"
 
 export default {
   name: "education",
   data() {
     return {
       resume
-    };
+    }
   },
   methods: {
     addList() {
       this.resume.education.push({
-        studyDate: "", 
+        studyDate: "",
         studyDateView: "",
         school: "",
-        major: ""
-      });
+        major: "",
+        degree: ""
+      })
     },
     deleteList(index) {
-      this.resume.education.splice(index, 1)
+      if (this.resume.education.length > 1) {
+        this.resume.education.splice(index, 1)
+      }
     }
   }
-}
+};
 </script>
 
 <style>

@@ -2,31 +2,27 @@
   <div class="content" >
     <el-container>
       <el-header>
-        <el-card class="box-card"> easy-resume</el-card>
+        <toolbar/>
       </el-header>
       <el-container>
         <el-aside width="550px"><edit/></el-aside>
         <el-main><preview/></el-main>
       </el-container>
     </el-container>
-    <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
   </div>
 </template>
 
 <script>
 import edit from '../edit'
 import preview from '../preview'
+import toolbar from '../toolbar'
 
 export default {
   name: 'Home',
   components: {
     edit,
-    preview
-  },
-  data() {
-    return {
-      test: 'home'
-    }
+    preview,
+    toolbar
   }
 }
 </script>

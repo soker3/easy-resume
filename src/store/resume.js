@@ -14,7 +14,7 @@ let resume = {
   // 工作经历
   experience: [{
     workDate: '',
-    studyDateView: '',
+    workDateView: '',
     company: '',
     post: '',
     desc: ''
@@ -24,7 +24,8 @@ let resume = {
     studyDate: '',
     studyDateView: '',
     school: '',
-    major: ''
+    major: '',
+    degree: ''
   }],
   // 项目经验
   project: [{
@@ -41,6 +42,13 @@ let resume = {
     language: '',
     office: '',
     major: '',
+  },
+  // 简历配置
+  config: {
+    experience: { value: true },
+    education: { value: true },
+    project: { value: true },
+    skill: { value: true },
   }
 
 }

@@ -69,7 +69,9 @@ export default {
       })
     },
     deleteList(index) {
-      this.resume.project.splice(index, 1)
+      if (this.resume.project.length > 1) {
+        this.resume.project.splice(index, 1)
+      } 
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <el-card :body-style="{ padding: '0px' }" class="box-card">
-    <el-container>
+    <el-container id='resumeid'>
       <!-- 左边栏 -->
       <el-aside width="300px">
         <!-- 头像 -->
@@ -70,7 +70,7 @@
       <!-- 主要内容 -->
       <el-main>
         <!-- 教育背景 -->
-        <div>
+        <div v-if="resume.config.education.value">
           <el-divider content-position="left" v-if="resume.education">教育背景</el-divider>
           <table
             class="table-content"
@@ -80,14 +80,16 @@
             :key="index"
           >
             <tr>
-              <td width="200px">{{ item.studyDateView }}</td>
-              <td width="150px">{{ item.school }}</td>
-              <td style="text-align: right">{{ item.major }}</td>
+              <td>{{ item.studyDateView }}</td>
             </tr>
+            <tr>
+              <td>{{ `${item.school} \u3000 | \u3000 ${item.major} \u3000 | \u3000 ${item.degree} ` }}</td>
+            </tr>
+            <tr height="10px"></tr>
           </table>
         </div>
-        <!-- 工作经历 -->
-        <div>
+        <!-- 工作经验 -->
+        <div v-if="resume.config.experience.value">
           <el-divider content-position="left">工作经验</el-divider>
           <table
             class="table-content"
@@ -97,21 +99,26 @@
             :key="index"
           >
             <tr>
-              <td colspan="2">{{ item.workDateView }}</td>
+              <td class="td-label" colspan="2">{{ item.workDateView }}</td>
             </tr>
             <tr>
-              <td colspan="2"><strong>工作单位:</strong>{{ item.company }} | <strong>职位:</strong>{{item.post}}</td>
+              <td class="td-label"><strong>工作单位:</strong></td>
+              <td class="td-contenet">{{ item.company }}</td>
+            </tr>
+            <tr>
+              <td class="td-label"><strong>职位:</strong></td>
+              <td class="td-contenet">{{ item.post }}</td>
             </tr>
             <tr>
               <td class="td-label"><strong>工作描述：</strong></td>
-              <td>{{ item.desc }}</td>
+              <td class="td-contenet">{{ item.desc }}</td>
             </tr>
-            <tr height="80px"></tr>
+            <tr height="10px"></tr>
           </table>
         </div>
         <!-- 项目经历 -->
-        <div>
-          <el-divider content-position="left" v-if="resume.project.length > 0">项目经历 </el-divider>
+        <div v-if="resume.config.project.value">
+          <el-divider content-position="left" >项目经历 </el-divider>
           <table
             class="table-content"
             style="border: 1px;text-align: left"
@@ -120,33 +127,33 @@
             :key="index"
           >
             <tr>
-              <td class="td-contenet" colspan="2">{{ item.projectDateView }}</td>
+              <td class="td-label" colspan="2">{{ item.projectDateView }}</td>
             </tr>
             <tr>
-              <td class="td-contenet" colspan="2">{{ item.projectName }}</td>
+              <td class="td-label" colspan="2">{{ item.projectName }}</td>
             </tr>
             <tr>
               <td class="td-label"><strong> 相关技术栈： </strong> </td>
-              <td>{{ item.tecStack }}</td>
+              <td class="td-contenet">{{ item.tecStack }}</td>
             </tr>
             <tr>
               <td class="td-label"><strong> 项目角色： </strong> </td>
-              <td>{{ item.projectRole }}</td>
+              <td class="td-contenet">{{ item.projectRole }}</td>
             </tr>
             <tr>
               <td class="td-label"><strong> 项目职责： </strong> </td>
-              <td>{{ item.projectDute }}</td>
+              <td class="td-contenet">{{ item.projectDute }}</td>
             </tr>
             <tr>
               <td class="td-label"><strong>项目描述：</strong></td>
-              <td>{{ item.projectDesc }}</td>
+              <td class="td-contenet">{{ item.projectDesc }}</td>
             </tr>
-            <tr height="20px"></tr>
+            <tr height="10px"></tr>
           </table>
         </div>
-        <!-- 项目经历 -->
-        <div>
-          <el-divider content-position="left" v-if="Object.keys(resume.skill).length > 0">职业技能</el-divider>
+        <!-- 职业技能 -->
+        <div v-if="resume.config.skill.value">
+          <el-divider content-position="left" >职业技能</el-divider>
           <table
             class="table-content"
             style="border: 1px;text-align: left"
@@ -251,7 +258,6 @@ table {
 .table-content {
   line-height: 30px;
   border-bottom: 1000px;
-  table-layout: fixed;
 }
 .basic td {
   white-space: nowrap;
@@ -273,8 +279,11 @@ table {
 .td-label {
   padding-top:10px;
   width: 100px;
+  vertical-align:top;
 }
 .td-contenet {
   padding-top:10px;
+  white-space: pre-wrap;
+  word-break:break-all;
 }
 </style>
