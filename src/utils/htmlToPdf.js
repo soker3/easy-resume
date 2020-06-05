@@ -2,7 +2,7 @@ import html2Canvas from 'html2canvas'
 import JsPDF from 'jspdf'
 
 export default{
-  install (Vue, options) {
+  install (Vue) {
     Vue.prototype.getPdf = function (id, title) {
       html2Canvas(document.querySelector(`#${id}`), {
         // allowTaint: true
