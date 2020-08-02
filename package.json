@@ -11,6 +11,7 @@
     "core-js": "^3.6.4",
     "element-ui": "^2.13.1",
     "html2canvas": "^1.0.0-rc.5",
+    "hydrogen-js-sdk": "^2.2.4",
     "json5": "^2.1.3",
     "jspdf": "^1.5.3",
     "vue": "^2.6.11"

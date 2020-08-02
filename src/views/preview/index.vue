@@ -11,7 +11,7 @@
         <!-- 基本信息 -->
         <div class="name">
           <el-row style="height:50px;">
-            <font class="title">{{resume.basic.name}}</font>
+            <font class="title">{{sharedState.resume.basic.name}}</font>
           </el-row>
           <el-row style="height:50px;">
             <font class="title">求职意向：{{resume.basic.purpose}}</font>
@@ -186,7 +186,8 @@ export default {
   name: 'preview',
   data() {
     return {
-      resume
+      resume,
+      sharedState: this.$Store.state
     }
   },
   watch: {
@@ -243,7 +244,7 @@ export default {
   text-align: center;
 }
 .basic {
-  height: 600px;
+  height: 29.7cm;
   font-size: 17px;
   padding: 30px 30px 30px 30px;
   text-align: left;
