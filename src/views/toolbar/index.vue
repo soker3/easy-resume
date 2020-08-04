@@ -50,7 +50,7 @@ export default {
         todos.saveAll().then(res => {
           console.log(res)
         }).catch(err => {
-          console.log(`保存失败: ${err}`)
+          console.log(`err`)
         })
       })
     },
