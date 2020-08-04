@@ -6,7 +6,7 @@
       ref="form"
       label-width="80px"
       style="width:335px"
-      v-for="(item, index) in resume.experience"
+      v-for="(item, index) in sharedState.resume.experience"
       :key="index"
     >
       <el-divider style="height: 20px" content-position="left">工作经验{{index + 1}}</el-divider>
@@ -42,18 +42,17 @@
 </template>
 
 <script>
-import resume from "../../../store/resume";
 
 export default {
   name: "experience",
   data() {
     return {
-      resume
+       sharedState: this.$Store.state
     }
   },
   methods: {
     addList() {
-      this.resume.experience.push({
+      this.sharedState.resume.experience.push({
         workDate: '',
         company: '',
         post: '',
@@ -61,8 +60,8 @@ export default {
       })
     },
     deleteList(index) {
-      if (this.resume.experience.length > 1)  {
-        this.resume.experience.splice(index, 1)
+      if (this.sharedState.resume.experience.length > 1)  {
+        this.sharedState.resume.experience.splice(index, 1)
       }
     }
   }

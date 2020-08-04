@@ -6,7 +6,7 @@
       ref="form"
       label-width="85px"
       style="width:335px"
-      v-for="(item, index) in resume.project"
+      v-for="(item, index) in sharedState.resume.project"
       :key="index"
     >
       <el-divider style="height: 20px" content-position="left">项目经验{{index + 1}}</el-divider>
@@ -48,18 +48,17 @@
 </template>
 
 <script>
-import resume from  '../../../store/resume'
 
 export default {
   name: 'project',
   data() {
     return {
-      resume
+      sharedState: this.$Store.state
     }
   },
   methods: {
     addList() {
-      this.resume.project.push({
+      this.sharedState.resume.project.push({
         projectDate: '',
         projectName: '',
         tecStack: '',
@@ -69,8 +68,8 @@ export default {
       })
     },
     deleteList(index) {
-      if (this.resume.project.length > 1) {
-        this.resume.project.splice(index, 1)
+      if (this.sharedState.resume.project.length > 1) {
+        this.sharedState.resume.project.splice(index, 1)
       } 
     }
   }

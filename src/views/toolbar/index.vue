@@ -10,7 +10,7 @@
       <el-col :span="11">
         <div class="grid-content">
           <el-button type="primary" icon="el-icon-notebook-1" @click="getResume">提取数据</el-button>
-          <el-button type="primary" icon="el-icon-document-checked">保存数据</el-button>
+          <el-button type="primary" icon="el-icon-document-checked" @click="saveResume">保存数据</el-button>
           <el-button type="primary" icon="el-icon-document-checked"  @click="expPdf">导出成PDF文件</el-button>
           <el-button type="primary" icon="el-icon-document-checked"  @click="login">登录</el-button>
         </div>
@@ -38,7 +38,20 @@ export default {
         this.$Store.setResumeAction(JSON.parse(res.content))
         console.log(res)
       }).catch(err => {
-        console.log(err)
+        console.log(err)  
+      })
+    },
+    saveResume() {
+      const query = this.$Bmob.Query('resume')
+      console.log(`userId: ${this.$Store.state.user.username}`)
+      query.equalTo('userId', '==', this.$Store.state.user.username)
+      query.find().then(todos => {
+        todos.set('content', '{haha}')
+        todos.saveAll().then(res => {
+          console.log(res)
+        }).catch(err => {
+          console.log(`保存失败: ${err}`)
+        })
       })
     },
     login() {

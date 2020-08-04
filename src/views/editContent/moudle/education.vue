@@ -6,7 +6,7 @@
       ref="form"
       label-width="80px"
       style="width:335px"
-      v-for="(item, index) in resume.education"
+      v-for="(item, index) in sharedState.resume.education"
       :key="index"
     >
       <el-divider style="height: 20px" content-position="left">教育背景{{index + 1}}</el-divider>
@@ -43,18 +43,17 @@
 </template>
 
 <script>
-import resume from "../../../store/resume"
 
 export default {
   name: "education",
   data() {
     return {
-      resume
+      sharedState: this.$Store.state
     }
   },
   methods: {
     addList() {
-      this.resume.education.push({
+      this.sharedState.resume.education.push({
         studyDate: "",
         studyDateView: "",
         school: "",
@@ -63,8 +62,8 @@ export default {
       })
     },
     deleteList(index) {
-      if (this.resume.education.length > 1) {
-        this.resume.education.splice(index, 1)
+      if (this.sharedState.resume.education.length > 1) {
+        this.sharedState.resume.education.splice(index, 1)
       }
     }
   }

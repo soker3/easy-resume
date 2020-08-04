@@ -19,7 +19,6 @@
 
 <script>
 import config from './moudle/config'
-import resume from '../../store/resume'
 import basic from './moudle/basic'
 import experience from './moudle/experience' 
 import education from './moudle/education'
@@ -37,11 +36,6 @@ export default {
     project,
     skill,
     config
-  },
-  data() {
-    return {
-      resume
-    }
   }
 }
 </script>

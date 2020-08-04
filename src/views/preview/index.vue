@@ -5,7 +5,7 @@
       <el-aside width="300px">
         <!-- 头像 -->
         <div class="header">
-          <el-image :src="resume.basic.imageSrc" fit="fill" style="width: 200px; height: 200px"></el-image>
+          <el-image :src="sharedState.resume.basic.imageSrc" fit="fill" style="width: 200px; height: 200px"></el-image>
         </div>
 
         <!-- 基本信息 -->
@@ -14,7 +14,7 @@
             <font class="title">{{sharedState.resume.basic.name}}</font>
           </el-row>
           <el-row style="height:50px;">
-            <font class="title">求职意向：{{resume.basic.purpose}}</font>
+            <font class="title">求职意向：{{sharedState.resume.basic.purpose}}</font>
           </el-row>
         </div>
 
@@ -26,21 +26,21 @@
                 <i class="el-icon-orange"></i>
               </td>
               <td width="80px">出生日期:</td>
-              <td>{{ resume.basic.brithday }}</td>
+              <td>{{ sharedState.resume.basic.brithday }}</td>
             </tr>
             <tr>
               <td style="font-size:23px">
                 <i class="el-icon-location-outline"></i>
               </td>
               <td>籍<span style="margin: 18px" />贯:</td>
-              <td>{{ resume.basic.nativePlace }}</td>
+              <td>{{ sharedState.resume.basic.nativePlace }}</td>
             </tr>
             <tr>
               <td style="font-size:23px">
                 <i class="el-icon-star-off"></i>
               </td>
               <td>政治面貌:</td>
-              <td>{{ resume.basic.politicsStatus }}</td>
+              <td>{{ sharedState.resume.basic.politicsStatus }}</td>
             </tr>
             <tr>
               <td style="font-size:23px">
@@ -49,19 +49,19 @@
               <td>
                 民<span style="margin: 18px" />族:
               </td>
-              <td>{{ resume.basic.nation }}</td>
+              <td>{{ sharedState.resume.basic.nation }}</td>
             </tr>
             <tr>
               <td style="font-size:23px">
                 <i class="el-icon-phone-outline"></i>
               </td>
-              <td colspan="2">{{ resume.basic.phone }}</td>
+              <td colspan="2">{{ sharedState.resume.basic.phone }}</td>
             </tr>
             <tr>
               <td style="font-size:23px">
                 <i class="el-icon-chat-square"></i>
               </td>
-              <td colspan="2">{{ resume.basic.eMail }}</td>
+              <td colspan="2">{{ sharedState.resume.basic.eMail }}</td>
             </tr>
           </table>
         </div>
@@ -70,13 +70,13 @@
       <!-- 主要内容 -->
       <el-main>
         <!-- 教育背景 -->
-        <div v-if="resume.config.education.value">
-          <el-divider content-position="left" v-if="resume.education">教育背景</el-divider>
+        <div v-if="sharedState.resume.config.education.value">
+          <el-divider content-position="left" v-if="sharedState.resume.education">教育背景</el-divider>
           <table
             class="table-content"
             style="border: 1px;text-align: left"
             width="560px"
-            v-for="(item, index) in resume.education"
+            v-for="(item, index) in sharedState.resume.education"
             :key="index"
           >
             <tr>
@@ -89,13 +89,13 @@
           </table>
         </div>
         <!-- 工作经验 -->
-        <div v-if="resume.config.experience.value">
+        <div v-if="sharedState.resume.config.experience.value">
           <el-divider content-position="left">工作经验</el-divider>
           <table
             class="table-content"
             style="border: 1px;text-align: left"
             width="560px"
-            v-for="(item, index) in resume.experience"
+            v-for="(item, index) in sharedState.resume.experience"
             :key="index"
           >
             <tr>
@@ -117,13 +117,13 @@
           </table>
         </div>
         <!-- 项目经历 -->
-        <div v-if="resume.config.project.value">
+        <div v-if="sharedState.resume.config.project.value">
           <el-divider content-position="left" >项目经历 </el-divider>
           <table
             class="table-content"
             style="border: 1px;text-align: left"
             width="560px"
-            v-for="(item, index) in resume.project"
+            v-for="(item, index) in sharedState.resume.project"
             :key="index"
           >
             <tr>
@@ -152,7 +152,7 @@
           </table>
         </div>
         <!-- 职业技能 -->
-        <div v-if="resume.config.skill.value">
+        <div v-if="sharedState.resume.config.skill.value">
           <el-divider content-position="left" >职业技能</el-divider>
           <table
             class="table-content"
@@ -161,15 +161,15 @@
           >
             <tr>
               <td class="td-label"><strong> 语言技能：</strong></td>
-              <td class="td-contenet">{{ resume.skill.language }}</td>
+              <td class="td-contenet">{{ sharedState.resume.skill.language }}</td>
             </tr>
             <tr>
               <td class="td-label"><strong> 办公技能：</strong></td>
-              <td class="td-contenet">{{ resume.skill.office }}</td>
+              <td class="td-contenet">{{ sharedState.resume.skill.office }}</td>
             </tr>
             <tr>
               <td class="td-label"><strong> 专业技能：</strong></td>
-              <td class="td-contenet">{{ resume.skill.major }}</td>
+              <td class="td-contenet">{{ sharedState.resume.skill.major }}</td>
             </tr>
             <tr height="20px"></tr>
           </table>
@@ -191,37 +191,37 @@ export default {
     }
   },
   watch: {
-    'resume.education': {
+    'sharedState.resume.education': {
       handler: function(newVal) {
         newVal.forEach((item, index) => {
           // 格式化日期
           if (item.studyDate instanceof Array) {
-            this.resume.education[index].studyDateView = item.studyDate.join(' - ') 
+            this.sharedState.resume.education[index].studyDateView = item.studyDate.join(' - ') 
           }
           
         })
       },
       deep: true
     },
-    'resume.experience': {
+    'sharedState.resume.experience': {
       handler: function(newVal) {
         newVal.forEach((item, index) => {
           // 格式化日期
           console.log(item)
           if (item.workDate instanceof Array) {
-            this.resume.experience[index].workDateView = item.workDate.join(' - ') 
+            this.sharedState.resume.experience[index].workDateView = item.workDate.join(' - ') 
           }
           
         })
       },
       deep: true
     },
-    'resume.project': {
+    'sharedState.resume.project': {
       handler: function(newVal) {
         newVal.forEach((item, index) => {
           // 格式化日期
           if (item.projectDate instanceof Array) {
-            this.resume.project[index].projectDateView = item.projectDate.join(' - ') 
+            this.sharedState.resume.project[index].projectDateView = item.projectDate.join(' - ') 
           }
         })
       },
