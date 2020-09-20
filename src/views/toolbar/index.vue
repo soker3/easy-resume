@@ -2,9 +2,18 @@
   <el-card :body-style="{ padding: '10px' }" class="box-card">
     <el-row>
       <el-col :span="17">
-        <div class="grid-content">
-          用户名：<el-input size="medium" v-model="privateState.userName" placeholder="请输入用户名" style="width:200px;" ></el-input>
-          密码：<el-input size="medium" v-model="privateState.password" placeholder="请输入密码" style="width:200px;" show-password></el-input>
+        <!-- 登陆/注册窗口-->
+        <div class="grid-content" >
+          <el-form :inline="true" v-show="privateState.isLoginShow || privateState.isRegisterShow">
+            <el-form-item label="用户名" style="margin-bottom: 0px;">
+              <el-input size="medium" v-model="privateState.userName" placeholder="请输入用户名" style="width:200px;" ></el-input>
+            </el-form-item>
+            <el-form-item label="密码" style="margin-bottom: 0px;"> 
+              <el-input size="medium" v-model="privateState.password" placeholder="请输入密码" style="width:200px;" show-password></el-input>
+            </el-form-item>
+            <el-button type="primary" @click="login" v-show="privateState.isLoginShow" style="margin-left: 10px;">登陆</el-button>
+            <el-button type="primary" @click="login" v-show="privateState.isRegisterShow">注册</el-button>
+          </el-form>        
         </div>
       </el-col>
       <el-col :span="6">
@@ -21,18 +30,15 @@
               <el-dropdown-item icon="el-icon-document-checked" command="expPdf" >导出PDF</el-dropdown-item>
               <el-dropdown-item icon="el-icon-download" command="getResume" divided>提取数据</el-dropdown-item>
               <el-dropdown-item icon="el-icon-upload" command="saveResume">保存数据</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-user" divided>注册</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-user" divided command="register">注册</el-dropdown-item>
               <el-dropdown-item icon="el-icon-user-solid" command="login">登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          
         </div>
-
       </el-col>
     </el-row>
   </el-card>
 </template>
-
 <script>
 
 export default {
@@ -42,7 +48,9 @@ export default {
       privateState: {
         size: 'medium',
         userName: '',
-        password: ''
+        password: '',
+        isLoginShow: false,
+        isRegisterShow: false
       },
       sharedState: this.$Store.state
     }
@@ -52,7 +60,14 @@ export default {
       if (command == 'expPdf')  this.expPdf()
       if (command == 'getResume')  this.getResume()
       if (command == 'saveResume')  this.saveResume()
-      if (command == 'login')  this.login()
+      if (command == 'login') {
+        this.privateState.isLoginShow = true
+        this.privateState.isRegisterShow = false
+      }
+      if (command == 'register') {
+        this.privateState.isRegisterShow = true
+        this.privateState.isLoginShow = false
+      }
 
     },
     expPdf() {
