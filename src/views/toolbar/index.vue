@@ -11,7 +11,7 @@
             <el-form-item label="密码" style="margin-bottom: 0px;"> 
               <el-input size="medium" v-model="privateState.password" placeholder="请输入密码" style="width:200px;" show-password></el-input>
             </el-form-item>
-            <el-button type="primary" @click="login" v-show="privateState.isLoginShow" style="margin-left: 10px;">登陆</el-button>
+            <el-button type="primary" @click="login" v-show="privateState.isLoginShow" style="margin-left: 10px;">登录</el-button>
             <el-button type="primary" @click="register" v-show="privateState.isRegisterShow">注册</el-button>
           </el-form>        
         </div>
@@ -116,6 +116,7 @@ export default {
             message: '登录成功！',
             type: 'success'
           })
+          this.privateState.isLoginShow = false
         }).catch(err => {
           this.$message({
             showClose: true,
