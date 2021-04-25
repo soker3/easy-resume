@@ -4,7 +4,7 @@ let store = {
   debug: true,
   state: {
     resume: resume,
-    user: null
+    defaultResume: JSON.parse(JSON.stringify(resume))
   },
   setResumeAction (newValue) {
     if (this.debug) console.log('setResumeAction triggered with', newValue)
@@ -13,14 +13,6 @@ let store = {
   clearResumeAction () {
     if (this.debug) console.log('clearResumeAction triggered')
     this.state.resume = null
-  },
-  setUserAction (newValue) {
-    if (this.debug) console.log('setUserAction triggered with', newValue)
-    this.state.user = newValue
-  },
-  clearUserAction () {
-    if (this.debug) console.log('clearUserAction triggered')
-    this.state.user = null
   }
 }
 

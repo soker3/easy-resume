@@ -50,43 +50,87 @@ export default {
         userName: '',
         password: '',
         isLoginShow: false,
-        isRegisterShow: false
+        isRegisterShow: false,
       },
       sharedState: this.$Store.state
     }
   },
   methods: {
+    /*
+    * 下拉菜单的控制
+    */
     dropDown(command) {
       if (command == 'expPdf')  this.expPdf()
       if (command == 'getResume')  this.getResume()
       if (command == 'saveResume')  this.saveResume()
       if (command == 'login') {
+        this.privateState.isInputShow = true
         this.privateState.isLoginShow = true
         this.privateState.isRegisterShow = false
       }
       if (command == 'register') {
+        this.privateState.isInputShow = true
         this.privateState.isRegisterShow = true
         this.privateState.isLoginShow = false
       }
 
     },
+    /*
+    * 导出功能
+    */
     expPdf() {
       this.getPdf('resumeid', 'resume')
     },
+    /*
+    * 提取数据
+    */
     getResume() {
+      // 从session中获取用户id
+      let username = sessionStorage.getItem('username')
+      if (!username) {
+        this.$message({
+            showClose: true,
+            message: '未找到用户信息，请先登录',
+            type: 'error'
+        })
+        return 
+      }
       const query = this.$Bmob.Query('resume')
-      query.get('127712f842').then(res => {
-        this.$Store.setResumeAction(JSON.parse(res.content))
-        console.log(res)
+      query.equalTo('userId', '==', username)
+      query.find().then(res => {
+        this.$Store.setResumeAction(JSON.parse(res[0].content))
+        this.$message({
+            showClose: true,
+            message: '提取成功！',
+            type: 'success'
+        })
       }).catch(err => {
+        this.$message({
+            showClose: true,
+            message: '提取失败！',
+            type: 'error'
+        })
         console.log(err)  
       })
     },
+    /*
+    * 保存数据
+    */
     saveResume() {
+      // 从session中获取用户id
+      let username = sessionStorage.getItem('username')
+      if (!username) {
+        this.$message({
+            showClose: true,
+            message: '未找到用户信息，请先登录',
+            type: 'error'
+        })
+        return 
+      }
       const query = this.$Bmob.Query('resume')
-      query.equalTo('userId', '==', this.$Store.state.user.username)
+      query.equalTo('userId', '==', username)
       query.find().then(todos => {
-        todos.set('content', JSON.stringify(this.$Store.state.resume))
+        todos.set('content', JSON.stringify(this.sharedState.resume))
         todos.saveAll().then(res => {
           console.log(res,'成功')
           this.$message({
@@ -104,32 +148,78 @@ export default {
         })
       })
     },
+    /*
+    * 登录
+    */
     login() {
       this.$Bmob.User.login(this.privateState.userName, this.privateState.password).then(res => {
-        this.$Store.setUserAction(res)
-        // 提取数据
-        const query = this.$Bmob.Query('resume')
-        query.get('127712f842').then(res => {
-          this.$Store.setResumeAction(JSON.parse(res.content))
-          this.$message({
+        // 存入session
+        sessionStorage.setItem('userOjbectId', res.objectId )
+        sessionStorage.setItem('userSessionToken', res.sessionToken )
+        sessionStorage.setItem('username', res.username )
+        this.$message({
             showClose: true,
             message: '登录成功！',
             type: 'success'
-          })
-          this.privateState.isLoginShow = false
-        }).catch(err => {
-          this.$message({
-            showClose: true,
-            message: `提取简历信息失败`,
-            type: 'success'
-          })
-          console.log(err, '失败')
         })
+        // 获取数据
+        this.getResume()
+        // 隐藏登录/注册窗口
+        this.privateState.userName = ''
+        this.privateState.password = ''
+        this.privateState.isLoginShow = false
+        this.privateState.isRegisterShow =  false
       }).catch(err => {
         console.log(err, '失败')
         this.$message({
           showClose: true,
           message: `登录失败！${err.error}`,
+          type: 'error'
+        })
+      })
+    },
+    /*
+    * 注册
+    */
+    register() {
+      let params = {
+          username: this.privateState.userName,
+          password: this.privateState.password,
+          email: `${this.privateState.userName}@bmob.cn`,
+          phone: '13711166567'
+      }
+      this.$Bmob.User.register(params).then(res => {
+        console.log(res, '注册成功')
+        this.$message({
+          showClose: true,
+          message: `注册成功！`,
+          type: 'success'
+        })
+        console.log('', 'name:' + res.username)
+        console.log(res)
+        // 存入session
+        sessionStorage.setItem('userOjbectId', res.objectId )
+        sessionStorage.setItem('userSessionToken', res.sessionToken )
+        sessionStorage.setItem('username', this.privateState.userName )
+        // 在模板表新增一条记录
+        const query = this.$Bmob.Query('resume')
+        query.set("userId", this.privateState.userName)
+        query.set('content', JSON.stringify(this.sharedState.defaultResume))
+        query.save().then(res => {
+          console.log(res, '新增成功')
+        }).catch(err => {
+          console.log(err, '新增失败')
+        })
+        // 隐藏登录/注册窗口
+        this.privateState.userName = ''
+        this.privateState.password = ''
+        this.privateState.isLoginShow = false
+        this.privateState.isRegisterShow =  false
+      }).catch(err => {
+        console.log(err, '注册失败')
+        this.$message({
+          showClose: true,
+          message: `注册失败！${err.error}`,
           type: 'error'
         })
       })

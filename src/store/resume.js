@@ -2,7 +2,7 @@ let resume = {
   // 基础信息
   basic: {
     name: '',
-    imageSrc: 'https://raw.githubusercontent.com/soker3/image/master/pic/user.png2',
+    imageSrc: '',
     purpose: '',
     brithday: '',
     nativePlace: '',
@@ -50,7 +50,5 @@ let resume = {
     project: { value: true },
     skill: { value: true },
   }
-
 }
-
 export default resume
